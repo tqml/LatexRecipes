@@ -1,0 +1,244 @@
+\documentclass[final,twoside,openright]{book} 
+% Useful Options:
+% - draft vs. final
+% - twocolumn: Use a two column layout
+% - twoside: Formats for printing as a book
+
+
+ % Use an extension of the original Computer Modern font to minimize the use of bitmapped letters.
+\usepackage{lmodern}       
+% Determines font encoding of the output. Font packages have to be included before this line.
+\usepackage[T1]{fontenc}    
+% Determines encoding of the input. All input files have to use UTF8 encoding.
+\usepackage[utf8]{inputenc} 
+
+%--------------------------------------
+\usepackage[ngerman]{babel} %German-specific commands
+%--------------------------------------
+
+
+% Extended LaTeX functionality is enables by including packages with \usepackage{...}.
+
+% Extended typesetting of mathematical expression.
+\usepackage{amsmath}     
+\usepackage{amssymb}    
+\usepackage{mathtools}  
+\usepackage{mhchem}
+
+\usepackage{microtype}  % Small-scale typographic enhancements.
+\usepackage[inline]{enumitem} % User control over the layout of lists (itemize, enumerate, description).
+\usepackage{siunitx}
+\usepackage{multirow}   % Allows table elements to span several rows.
+\usepackage{booktabs}   % Improves the typesettings of tables.
+\usepackage{subcaption} % Allows the use of subfigures and enables their referencing.
+\usepackage{nag}       % Issues warnings when best practices in writing LaTeX documents are violated.
+\usepackage{todonotes} % Provides tooltip-like todo notes.
+\usepackage{epigraph}
+\usepackage[acronym,toc]{glossaries} 
+\usepackage{graphicx}
+\usepackage{csquotes}
+\usepackage{lipsum}
+
+%************************************
+% BiblioGraphy Settings
+%************************************
+\usepackage[style=verbose-ibid,backend=bibtex]{biblatex}
+\bibliography{references}
+
+
+
+
+
+%************************************
+% PDF Meta Data Settings
+%************************************
+% Enables cross linking in the electronic document version. This package has to be included second to last.
+\usepackage[hidelinks]{hyperref}  
+
+% Set PDF document properties
+\makeatletter
+\AtBeginDocument{
+  \hypersetup{
+    pdfpagelayout   = TwoPageRight,
+    pdftitle = {\@title},
+    pdfauthor = {\@author},
+    pdfsubject      = {Subject},              
+    pdfkeywords     = {a, list, of, keywords} 
+  }
+}
+\makeatother
+
+
+%************************************************************
+% ToDo: Set thesis title and author
+%************************************************************
+
+\newcommand{\thesistitle}{Writing a Thesis with \LaTeX}
+
+\title{Writing a Thesis with \LaTeX}
+
+\author{Vorname Nachname}
+
+\date{Februar 2020}
+
+
+
+%************************************
+% Glossaries and Acronyms
+%************************************
+\makeglossaries
+
+\newacronym{snn}{SNN}{Spiking Neural Network}
+\newacronym{dl}{DL}{deep learning}
+\newacronym{dnn}{DNN}{deep neural network}
+\newacronym{nn}{NN}{Neural Network}
+\newacronym{ann}{ANN}{Artifical Neural Network}
+\newacronym{lif}{LIF}{Leaky-Integrate-and-Fire}
+\newacronym{hhm}{HHM}{Hodgkin-Huxley Model}
+\newacronym{stdp}{STDP}{spike-timing-dependent plasticity}
+\newacronym{ki}{KI}{Künstliche Intelligenz}
+\newacronym{ai}{AI}{Artificial Intelligence}
+\newacronym{ikt}{IKT}{Informations- und Kommunikationstechnik}
+\newacronym{it}{IT}{Informationstechnik}
+\newacronym{desi}{DESI}{Digital Economy and Society Index}
+\newacronym{oecd}{OECD}{Organisation für wirtschaftliche Zusammenarbeit und Entwicklung}
+
+\newglossaryentry{latex}
+{
+        name=latex,
+        description={Is a mark up language specially suited for 
+scientific documents}
+}
+ 
+\newglossaryentry{maths}
+{
+        name=mathematics,
+        description={Mathematics is what mathematicians do}
+}
+ 
+\newglossaryentry{formula}
+{
+        name=formula,
+        description={A mathematical expression}
+}
+\newglossaryentry{FaceID}
+{
+        name={Face-ID},
+        description={Eine Authentifizierungsmethode mithilfe von Gesichtserkennung der Firma Apple}
+}
+\newglossaryentry{smsTAN}
+{
+        name={SMS-TAN},
+        description={Abkürzung für Transaktionsnummer, ein elektronsiches Einmalkennwort, welches in diesem Fall über SMS versendet wird}
+}
+\newglossaryentry{n26}
+{
+        name={N26},
+        description={N26 (Number 26), Bank die sich auf eBanking spezialisiert hat}
+}
+
+
+%************************************
+% Document Starts Here
+%
+%
+%
+% Good Latex Help:
+% http://www.maths.adelaide.edu.au/anthony.roberts/LaTeX/ltxxref.php
+%************************************
+\begin{document}
+
+
+
+%************************************
+% Title Page
+%************************************
+\begin{titlepage}
+ \centering
+% \includegraphics[width=0.15\textwidth]{example-image-1x1}\par\vspace{1cm}
+ \includegraphics[height=3cm]{imgs/tu.png}
+ \par\vspace{1cm}
+ {\scshape\LARGE TU WIEN \par Fakultät für Elektrotechnik \par}
+ \vspace{1cm}
+% {\scshape\Large Final year project\par}
+% \vspace{1.5cm}
+ {\huge\bfseries \thesistitle \par}
+% {\huge\itshape \thesissubtitle \par}
+ \vspace{2cm}
+ {Dimplomarbeit verfasst von\par}
+ {\Large Vorname \textsc{Nachname}\par}
+ {Matrikelnummer \par}
+  \vspace{2cm}
+ Unter der Betreuung von \par Vorname \textsc{Nachname} \par 
+ \vfill
+% Bottom of the page
+ {\large 1. Januar 2020 \par}
+\end{titlepage}
+
+%************************************
+% Front Matter
+%************************************
+
+
+\cleardoublepage
+\include{00_abstract}
+
+\cleardoublepage
+\include{00_erklaerung}
+
+\cleardoublepage
+\include{00_danksagung}
+
+
+\cleardoublepage
+\tableofcontents
+
+
+
+
+%************************************
+% Main Content
+%************************************
+\cleardoublepage
+\chapter{Einleitung}
+\input{01_einleitung}
+\input{02}
+\chapter{Hauptteil A}
+\input{03}
+\input{04}
+\chapter{Hauptteil B}
+\input{05}
+\input{06}
+
+
+%************************************
+% Conclusion
+%************************************
+\chapter{Conclusio}
+\input{07}
+
+
+
+%************************************
+% Appendix
+%************************************
+\cleardoublepage
+\appendix
+%\input{appendix}
+
+\cleardoublepage
+\listoffigures
+\listoftables
+% Add an index.
+% \printindex
+% Add a glossary.
+\cleardoublepage
+\printglossaries
+% \printglossary[type=\acronymtype]
+
+
+%\bibliography{references}
+%\bibliographystyle{plain}
+\cleardoublepage
+\printbibliography
+\end{document}
